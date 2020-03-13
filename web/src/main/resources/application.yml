@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    #DataBase
+    url: jdbc:mysql://localhost:3306/framework?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+    #ConnectPool
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: hikariPool
+      max-lifetime: 1800000
+      connection-timeout: 300000
+      connection-test-query: SELECT 1
+
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
