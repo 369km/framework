@@ -14,5 +14,7 @@ public class Constant {
     public static final int APP_TYPE = 10;
     public static final String COOKIE_DOMAIN = "";
     public static final String LOGIN_USER_PREX = "LOGIN_USER_";
+    public static final String LOGIN_ERROR_COUNT_PREX = "LOGIN_ERROR_USER_";
+
 
 }

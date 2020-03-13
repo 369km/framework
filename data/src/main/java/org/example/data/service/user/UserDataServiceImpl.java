@@ -47,4 +47,8 @@ public class UserDataServiceImpl implements UserDataService {
         userRepository.deleteById(id);
     }
 
+    @Override
+    public Optional<User> findByLoginAccountAndLoginPassword(String loginAccount, String loginPassword) {
+        return Optional.ofNullable(userRepository.findByLoginAccountAndLoginPassword(loginAccount,loginPassword));
+    }
 }
