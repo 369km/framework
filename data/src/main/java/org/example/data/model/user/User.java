@@ -1,5 +1,6 @@
 package org.example.data.model.user;
 
+import org.example.common.aspect.Encrypt;
 import org.example.data.model.BaseModel;
 import org.example.data.model.department.Department;
 import org.example.data.model.role.Role;
@@ -52,6 +53,7 @@ public class User extends BaseModel {
         return loginPassword;
     }
 
+    @Encrypt
     public void setLoginPassword(String loginPassword) {
         this.loginPassword = loginPassword;
     }

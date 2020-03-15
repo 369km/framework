@@ -2,14 +2,22 @@ package org.example.business.user;
 
 import org.assertj.core.util.Lists;
 import org.example.business.BaseJunit;
+import org.example.common.token.Token;
+import org.example.common.token.TokenThreadLocal;
 import org.example.data.model.department.Department;
 import org.example.data.model.role.Role;
 import org.example.data.model.user.User;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 
 public class UserServiceImplTest extends BaseJunit {
+    @Before
+    public void before(){
+        TokenThreadLocal.setToken(new Token(1L));
+    }
+
     @Autowired
     private UserService userService;
 
@@ -19,7 +27,7 @@ public class UserServiceImplTest extends BaseJunit {
         user.setId(1L);
         user.setName("杨福东");
         user.setLoginAccount("yangfudong");
-        user.setLoginPassword("123456");
+        user.setLoginPassword("1234567");
         Role role = new Role();
         role.setId(3L);
         user.setRoleList(Lists.newArrayList(role));
