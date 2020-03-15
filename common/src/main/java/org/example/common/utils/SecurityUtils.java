@@ -58,6 +58,15 @@ public class SecurityUtils {
         }
     }
 
+    public String urlDecode(String value) {
+        try {
+            return URLEncoder.encode(value, "UTF-8");
+        } catch (UnsupportedEncodingException var3) {
+            LOGGER.warn("URLDecode error: {}", var3.getMessage());
+            throw new RuntimeException(var3);
+        }
+    }
+
     public String sha1(byte[] bytes) {
         MessageDigest messageDigest = null;
         try {
