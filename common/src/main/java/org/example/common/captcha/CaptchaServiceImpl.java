@@ -1,4 +1,4 @@
-package org.example.business.captcha;
+package org.example.common.captcha;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.example.common.cache.CacheService;

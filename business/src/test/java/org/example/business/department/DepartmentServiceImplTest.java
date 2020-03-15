@@ -14,8 +14,15 @@ public class DepartmentServiceImplTest extends BaseJunit {
     @Test
     public void save() {
         Department department = new Department();
-        department.setParentId(0L);
-        department.setName("阿里科技公司");
+//        department.setParentId(0L);
+//        department.setName("阿里科技公司");
+        department.setParentId(1L);
+        department.setName("研发部门");
         BaseJunit.toPrintJson(departmentService.save(department));
+    }
+
+    @Test
+    public void tree(){
+        BaseJunit.toPrintJson(departmentService.tree());
     }
 }

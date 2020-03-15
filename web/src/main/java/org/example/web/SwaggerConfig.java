@@ -1,5 +1,6 @@
 package org.example.web;
 
+import org.example.web.annotation.DepartmentSwagger;
 import org.example.web.annotation.UserSwagger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -59,7 +60,7 @@ public class SwaggerConfig {
                     .build());
 
     @Bean
-    public Docket organizationApi() {
+    public Docket userApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("人员")
                 .apiInfo(userInfo())
@@ -78,6 +79,29 @@ public class SwaggerConfig {
     private ApiInfo userInfo() {
         return new ApiInfo("人员",
                 "人员管理",
+                "1.0.0", "no", null, "", "", new ArrayList<>());
+    }
+
+    @Bean
+    public Docket departmentApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("部门")
+                .apiInfo(departmentInfo())
+                .select()
+                .apis(RequestHandlerSelectors.withClassAnnotation(DepartmentSwagger.class))
+                .paths(any())
+                .build()
+                .genericModelSubstitutes(ResponseEntity.class)
+                .globalOperationParameters(globalParameters)
+                .useDefaultResponseMessages(false)
+                .enableUrlTemplating(false)
+                .produces(jsonProduces);
+    }
+
+
+    private ApiInfo departmentInfo() {
+        return new ApiInfo("部门",
+                "部门管理",
                 "1.0.0", "no", null, "", "", new ArrayList<>());
     }
 }

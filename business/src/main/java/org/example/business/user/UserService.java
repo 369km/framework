@@ -1,7 +1,7 @@
 package org.example.business.user;
 
 import org.example.business.BaseService;
-import org.example.business.captcha.CaptchaResponse;
+import org.example.common.captcha.CaptchaResponse;
 import org.example.common.rest.user.UserLogin;
 import org.example.data.model.user.User;
 

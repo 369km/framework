@@ -1,4 +1,4 @@
-package org.example.business.captcha;
+package org.example.common.captcha;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

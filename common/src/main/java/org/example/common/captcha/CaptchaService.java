@@ -1,4 +1,4 @@
-package org.example.business.captcha;
+package org.example.common.captcha;
 
 import java.util.Optional;
 

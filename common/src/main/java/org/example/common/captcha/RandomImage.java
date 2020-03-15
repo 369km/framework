@@ -1,4 +1,4 @@
-package org.example.business.captcha;
+package org.example.common.captcha;
 
 public class RandomImage {
     private String text;

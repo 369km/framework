@@ -1,5 +1,7 @@
 package org.example.data.model;
 
+import org.example.common.token.TokenThreadLocal;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;

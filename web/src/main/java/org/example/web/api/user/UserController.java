@@ -2,7 +2,7 @@ package org.example.web.api.user;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.example.business.captcha.CaptchaResponse;
+import org.example.common.captcha.CaptchaResponse;
 import org.example.business.user.UserService;
 import org.example.common.Constant;
 import org.example.common.rest.user.UserLogin;

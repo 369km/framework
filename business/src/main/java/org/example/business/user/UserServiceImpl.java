@@ -1,10 +1,10 @@
 package org.example.business.user;
 
 import org.apache.commons.lang3.StringUtils;
-import org.example.business.captcha.CaptchaRequest;
-import org.example.business.captcha.CaptchaResponse;
-import org.example.business.captcha.CaptchaService;
-import org.example.business.captcha.CaptchaStatus;
+import org.example.common.captcha.CaptchaRequest;
+import org.example.common.captcha.CaptchaResponse;
+import org.example.common.captcha.CaptchaService;
+import org.example.common.captcha.CaptchaStatus;
 import org.example.common.Constant;
 import org.example.common.cache.CacheService;
 import org.example.common.exception.request.ExceptionBadRequest;
@@ -48,6 +48,9 @@ public class UserServiceImpl implements UserService {
     private SecurityUtils securityUtils;
 
     public User save(User user) {
+        user.setLoginPassword(securityUtils.encrypt(user.getLoginPassword()));
+        user.setCreatorId(TokenThreadLocal.getToken().getId());
+        user.setUpdaterId(TokenThreadLocal.getToken().getId());
         return userDataService.save(user);
     }
 
