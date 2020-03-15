@@ -11,16 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -156,12 +149,7 @@ public class TokenServiceImpl implements TokenService {
     }
 
     public void storeToken(HttpServletResponse response, Token token, String host) {
-        String encryptedTokenString = null;
-        try {
-            encryptedTokenString = this.securityUtils.encrypt(token.toString());
-        } catch (BadPaddingException | NoSuchPaddingException | NoSuchAlgorithmException | IllegalBlockSizeException | UnsupportedEncodingException | NoSuchProviderException | InvalidKeyException e) {
-            LOGGER.error("encrypt token error:{}",e);
-        }
+        String encryptedTokenString = this.securityUtils.encrypt(token.toString());
         cacheService.set(buildLoginUserKey(encryptedTokenString), encryptedTokenString, Constant.SESSION_TIME_OUT);
         response.addCookie(this.createCookie(this.getTokenName(), encryptedTokenString, host));
         response.addHeader(this.getTokenName(), encryptedTokenString);

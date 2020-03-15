@@ -2,6 +2,8 @@ package org.example.common.exception;
 
 public enum ExceptionStatus {
     SUCCESS("000000", "请求成功"),
+    PARAM_NOT_CORRECT("000001", "参数错误"),
+    SERVICE_INTERNAL("000002", "服务器内部错误"),
     ;
 
     private String code;

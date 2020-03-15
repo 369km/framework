@@ -1,6 +1,8 @@
 package org.example.common.utils;
 
 import org.apache.commons.codec.DecoderException;
+import org.example.common.exception.server.ExceptionEnum500;
+import org.example.common.exception.server.ExceptionInternalServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +24,21 @@ public class SecurityUtils {
     @Autowired
     private TripleDesUtils des3;
 
-    public String encrypt(String clearText) throws BadPaddingException, NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, NoSuchProviderException, InvalidKeyException {
-        return this.des3.encrypt(clearText);
+    public String encrypt(String clearText) {
+        try {
+            return this.des3.encrypt(clearText);
+        } catch (IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException | InvalidKeyException | UnsupportedEncodingException e) {
+            throw new ExceptionInternalServer(ExceptionEnum500.INTERNAL_SERVER_ENCRYPT_FAIL);
+        }
     }
 
-    public String decrypt(String encryptedText) throws BadPaddingException, NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, UnsupportedEncodingException, DecoderException, NoSuchProviderException, InvalidKeyException {
-        return this.des3.decrypt(encryptedText);
+    public String decrypt(String encryptedText) {
+        try {
+            return this.des3.decrypt(encryptedText);
+        } catch (IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException | NoSuchProviderException | NoSuchPaddingException | InvalidKeyException | UnsupportedEncodingException | DecoderException e) {
+            throw new ExceptionInternalServer(ExceptionEnum500.INTERNAL_SERVER_DECRYPT_FAIL);
+        }
+
     }
 
     public String generateHashAndSalt(String clearText) {
@@ -47,8 +58,13 @@ public class SecurityUtils {
         }
     }
 
-    public String sha1(byte[] bytes) throws NoSuchAlgorithmException {
-        MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
+    public String sha1(byte[] bytes) {
+        MessageDigest messageDigest = null;
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-1");
+        } catch (NoSuchAlgorithmException e) {
+            throw new ExceptionInternalServer(ExceptionEnum500.INTERNAL_SERVER_ENCRYPT_FAIL);
+        }
         byte[] result = messageDigest.digest(bytes);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < result.length; ++i) {
@@ -57,8 +73,13 @@ public class SecurityUtils {
         return sb.toString();
     }
 
-    public String md5(byte[] bytes) throws NoSuchAlgorithmException {
-        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+    public String md5(byte[] bytes) {
+        MessageDigest messageDigest = null;
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            throw new ExceptionInternalServer(ExceptionEnum500.INTERNAL_SERVER_ENCRYPT_FAIL);
+        }
         byte[] result = messageDigest.digest(bytes);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < result.length; ++i) {

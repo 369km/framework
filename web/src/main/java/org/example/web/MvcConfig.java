@@ -29,7 +29,8 @@ public class MvcConfig extends WebMvcConfigurationSupport implements Application
         registry.addInterceptor(loggingInterceptor());
         registry.addInterceptor(tokenInterceptor())
                 .addPathPatterns(Constant.API + "/**")
-                .excludePathPatterns(Constant.API + "/user/login");
+                .excludePathPatterns(Constant.API + "/user/login")
+                .excludePathPatterns(Constant.API + "/user/captcha");
     }
 
     @Bean

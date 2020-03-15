@@ -13,6 +13,7 @@ import org.example.common.rest.user.UserLogin;
 import org.example.common.token.Token;
 import org.example.common.token.TokenService;
 import org.example.common.token.TokenThreadLocal;
+import org.example.common.utils.SecurityUtils;
 import org.example.data.model.user.User;
 import org.example.data.service.user.UserDataService;
 import org.slf4j.Logger;
@@ -43,6 +44,8 @@ public class UserServiceImpl implements UserService {
     private TokenService tokenService;
     @Autowired
     private CacheService cacheService;
+    @Autowired
+    private SecurityUtils securityUtils;
 
     public User save(User user) {
         return userDataService.save(user);
@@ -105,7 +108,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private User validateAccountAndPassword(String loginAccount, String loginPassword) {
-        return userDataService.findByLoginAccountAndLoginPassword(loginAccount, loginPassword).orElseThrow(() -> new ExceptionBadRequest(ExceptionEnum400.BAD_REQUEST_LOGIN));
+        return userDataService.findByLoginAccountAndLoginPassword(loginAccount, securityUtils.encrypt(loginPassword)).orElseThrow(() -> new ExceptionBadRequest(ExceptionEnum400.BAD_REQUEST_LOGIN));
     }
 
     private void storeToken(Long userId, HttpServletRequest request, HttpServletResponse response) {

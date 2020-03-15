@@ -1,8 +1,8 @@
 package org.example.web.interceptor;
 
 import com.google.common.collect.ImmutableMap;
-import org.example.business.exception.BaseException;
-import org.example.business.exception.ExceptionStatus;
+import org.example.common.exception.BaseException;
+import org.example.common.exception.ExceptionStatus;
 import org.example.common.exception.ValidationError;
 import org.example.common.utils.LoggerUtil;
 import org.example.web.response.RestResponse;

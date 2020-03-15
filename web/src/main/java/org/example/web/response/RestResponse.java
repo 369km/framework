@@ -1,8 +1,8 @@
 package org.example.web.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.example.business.exception.BaseException;
-import org.example.business.exception.ExceptionStatus;
+import org.example.common.exception.BaseException;
+import org.example.common.exception.ExceptionStatus;
 
 import java.util.Optional;
 
