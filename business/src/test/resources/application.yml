@@ -1,3 +1,14 @@
+server:
+  port: 8081
+
+  #tomcat
+  tomcat:
+    max-connections: 100
+    max-http-header-size: 10
+    max-http-post-size: 10000
+    max-threads: 20
+    min-spare-threads: 10
+
 spring:
   datasource:
     #DataBase
@@ -25,3 +36,21 @@ spring:
       ddl-auto: validate
       naming:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+
+  redis:
+    database: 1
+    host: 127.0.0.1
+    jedis:
+      pool:
+        max-active: 32
+        min-idle: 32
+
+org:
+  example:
+    email:
+      host: smtp.qq.com
+      port: 25
+      protocol: smtp
+      auth: true
+      account: 1353708832@qq.com
+      password: dmxbgfkjxeluhgig

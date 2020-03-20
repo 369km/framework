@@ -44,3 +44,13 @@ spring:
       pool:
         max-active: 32
         min-idle: 32
+
+org:
+  example:
+    email:
+      host: smtp.qq.com
+      port: 25
+      protocol: smtp
+      auth: true
+      account: 1353708832@qq.com
+      password: dmxbgfkjxeluhgig
