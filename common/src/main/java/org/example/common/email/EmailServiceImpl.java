@@ -15,7 +15,7 @@ import java.util.Properties;
 
 @Service
 public class EmailServiceImpl implements EmailService {
-    private static Logger LOGGER = LoggerFactory.getLogger(EmailServiceImpl.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(EmailServiceImpl.class);
 
     @Autowired
     private EmailConfigure emailConfigure;
